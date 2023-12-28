@@ -12,15 +12,6 @@ let nextPos = {
   y: 0
 }
 
-setInterval(() => {
-  const posX = Math.random() * canvas.width
-  const posY = Math.random() * canvas.height
-  nextPos.x = posX
-  nextPos.y = posY
-}, 1000)
-
-
-
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
@@ -33,26 +24,28 @@ function createCircle(x, y) {
 }
 
 function animate() {
-
-
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  // const deltaX = Math.random() * 35 - 5
-  // const deltaY = Math.random() * 35 - 5
 
+  setInterval(() => {
+    const posX = Math.random() * canvas.width
+    const posY = Math.random() * canvas.height
+    nextPos.x = posX
+    nextPos.y = posY
+  }, 500)
+  
   if (x < nextPos.x) {
-    x += 10
+    x += 1
   }
   if (x > nextPos.x){
-    x -= 10
+    x -= 1
   }
 
-  y = 50
-  // add bouncing if border of canvas
-  
-  // x = Math.max(50, Math.min(canvas.width - 30, x));
-  // y = Math.max(50, Math.min(canvas.height - 30, y));
-  console.log(nextPos)
-
+  if (y < nextPos.y) {
+    y += 1
+  }
+  if (y > nextPos.y){
+    y -= 1
+  }
   createCircle(x, y)
   requestAnimationFrame(animate)
 }
