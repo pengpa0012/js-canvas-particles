@@ -17,7 +17,8 @@ function initializeParticles() {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      speed: Math.random() * 10
+      speed: Math.random() * 12,
+      size: Math.random() * 5 + 12,
     });
   }
 }
@@ -39,7 +40,7 @@ function createCircle(particle) {
     particle.y -= particle.speed
   }
   ctx.beginPath()
-  ctx.arc(particle.x, particle.y, 10, 0, 2 * Math.PI)
+  ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI)
   ctx.fill()
 }
 
