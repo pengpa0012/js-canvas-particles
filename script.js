@@ -1,50 +1,55 @@
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d")
 
-
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-let x = 0, y = 0
-
-let nextPos = {
-  x: 0,
-  y: 0
-}
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 })
 
-function createCircle(speed) {
-  if (x < nextPos.x) {
-    x += speed
+let particles = []
+
+function initializeParticles() {
+  for (let i = 0; i < 5; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      speed: Math.random() * 10
+    });
   }
-  if (x > nextPos.x){
-    x -= speed
+}
+
+function createCircle(particle) {
+  const posX = Math.random() * canvas.width
+  const posY = Math.random() * canvas.height
+  if (particle.x < posX) {
+    particle.x += particle.speed
+  }
+  if (particle.x > posX){
+    particle.x -= particle.speed
   }
 
-  if (y < nextPos.y) {
-    y += speed
+  if (particle.y < posY) {
+    particle.y += particle.speed
   }
-  if (y > nextPos.y){
-    y -= speed
+  if (particle.y > posY){
+    particle.y -= particle.speed
   }
   ctx.beginPath()
-  ctx.arc(x, y, 10, 0, 2 * Math.PI)
+  ctx.arc(particle.x, particle.y, 10, 0, 2 * Math.PI)
   ctx.fill()
 }
 
 function animate() {
-  const posX = Math.random() * canvas.width
-  const posY = Math.random() * canvas.height
-  nextPos.x = posX
-  nextPos.y = posY
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  createCircle(5)
+  particles.forEach(particle => {
+    createCircle(particle)
+  })
   requestAnimationFrame(animate)
 }
 
+initializeParticles()
 animate()
-
