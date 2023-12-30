@@ -13,7 +13,7 @@ window.addEventListener('resize', () => {
 let particles = []
 
 function initializeParticles() {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 20; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -23,22 +23,17 @@ function initializeParticles() {
   }
 }
 
-function createCircle(particle) {
-  const posX = Math.random() * canvas.width
-  const posY = Math.random() * canvas.height
-  if (particle.x < posX) {
-    particle.x += particle.speed
-  }
-  if (particle.x > posX){
-    particle.x -= particle.speed
-  }
+function createCircle(particle, i) {
+  const posX = Math.random() * 20 - 10
+  const posY = Math.random() * 20 - 10
+  
+  particle.x += posX
+  particle.y += posY
 
-  if (particle.y < posY) {
-    particle.y += particle.speed
-  }
-  if (particle.y > posY){
-    particle.y -= particle.speed
-  }
+  // prevent particles from going off the canvas
+  particle.x = Math.max(0, Math.min(canvas.width, particle.x))
+  particle.y = Math.max(0, Math.min(canvas.height, particle.y))
+
   ctx.beginPath()
   ctx.arc(particle.x, particle.y, particle.size, 0, 2 * Math.PI)
   ctx.fill()
@@ -46,11 +41,17 @@ function createCircle(particle) {
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  particles.forEach(particle => {
-    createCircle(particle)
+  particles.forEach((particle, i) => {
+    createCircle(particle, i)
   })
   requestAnimationFrame(animate)
 }
 
 initializeParticles()
 animate()
+
+// TO ADD
+// Add UI for adding particles
+// Add interaction on particles (combine, explode)
+// Add line on particles when near each other
+
