@@ -13,11 +13,11 @@ window.addEventListener('resize', () => {
 let particles = []
 
 function initializeParticles() {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 15; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      speed: Math.random() * 12,
+      speed: Math.random() * 2,
       size: Math.random() * 5 + 12,
     });
   }
@@ -27,8 +27,8 @@ function createCircle(particle, i) {
   const posX = Math.random() * 20 - 10
   const posY = Math.random() * 20 - 10
   
-  particle.x += posX
-  particle.y += posY
+  particle.x += posX * particle.speed
+  particle.y += posY * particle.speed
 
   // prevent particles from going off the canvas
   particle.x = Math.max(0, Math.min(canvas.width, particle.x))
