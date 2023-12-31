@@ -1,8 +1,39 @@
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d")
+const circleUI = document.querySelector(".circle")
+const speedUI = document.querySelector(".speed")
+const sizeUI = document.querySelector(".size")
+const colorUI = document.querySelector(".color")
+const resetBtn = document.querySelector(".reset")
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
+
+let paramsUI = {
+  color: "#000000",
+  size: "10"
+}
+
+sizeUI.addEventListener("input", e => {
+  paramsUI.size = e.target.value
+  editCircle(paramsUI.size,  paramsUI.color)
+})
+
+colorUI.addEventListener("input", e => {
+  paramsUI.color = e.target.value
+  editCircle(paramsUI.size, paramsUI.color)
+})
+
+function editCircle(size, color) {
+  circleUI.style.backgroundColor = color
+  circleUI.style.width = `${size}px`
+  circleUI.style.height = `${size}px`
+  console.log(circleUI, size, color)
+}
+
+function onDropCircle() {
+  // Push particles here with right parameters
+}
 
 
 window.addEventListener('resize', () => {
@@ -47,8 +78,12 @@ function animate() {
   requestAnimationFrame(animate)
 }
 
-initializeParticles()
-animate()
+window.addEventListener("DOMContentLoaded", () => {
+  editCircle(paramsUI.size, paramsUI.color)
+  initializeParticles()
+  animate()
+})
+
 
 // TO ADD
 // Add UI for adding particles

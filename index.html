@@ -10,5 +10,20 @@
 </head>
 <body>
   <canvas id="canvas"></canvas>
+  <div class="fixed bottom-0 w-full flex justify-around gap-5 items-center bg-white border py-6">
+    <div class="flex gap-3">
+      <p>Size:</p>
+      <input type="range" min="10" max="20" class="size" value="10">
+    </div>
+    <div class="flex gap-3">
+      <p>Speed:</p>
+      <input type="range" min="10" max="20" class="speed" value="10">
+    </div>  
+    <input type="color" colorpick-eyedropper-active="false" class="color" value="#000000">
+    <button class="reset">Reset</button>
+    <div class="p-5 bottom-[75px] left-1/2 -translate-x-1/2 absolute bg-white border">
+      <div class="circle rounded-full cursor-grab" draggable></div>
+    </div>
+  </div>
 </body>
 </html>
