@@ -5,6 +5,8 @@ const speedUI = document.querySelector(".speed")
 const sizeUI = document.querySelector(".size")
 const colorUI = document.querySelector(".color")
 const resetBtn = document.querySelector(".reset")
+const dropdownBtn = document.querySelector(".dropdown-btn")
+const coverUI = document.querySelector(".cover-ui")
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
@@ -13,38 +15,10 @@ let paramsUI = {
   color: "#000000",
   size: "10"
 }
-
-sizeUI.addEventListener("input", e => {
-  paramsUI.size = e.target.value
-  editCircle(paramsUI.size,  paramsUI.color)
-})
-
-colorUI.addEventListener("input", e => {
-  paramsUI.color = e.target.value
-  editCircle(paramsUI.size, paramsUI.color)
-})
-
-function editCircle(size, color) {
-  circleUI.style.backgroundColor = color
-  circleUI.style.width = `${size}px`
-  circleUI.style.height = `${size}px`
-  console.log(circleUI, size, color)
-}
-
-function onDropCircle() {
-  // Push particles here with right parameters
-}
-
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
-})
-
 let particles = []
 
 function initializeParticles() {
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 1; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -79,6 +53,34 @@ function animate() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  sizeUI.addEventListener("input", e => {
+    paramsUI.size = e.target.value
+    editCircle(paramsUI.size,  paramsUI.color)
+  })
+
+  colorUI.addEventListener("input", e => {
+    paramsUI.color = e.target.value
+    editCircle(paramsUI.size, paramsUI.color)
+  })
+
+  dropdownBtn.addEventListener("click", () => {
+    coverUI.classList.toggle("toggle")
+  })
+
+  function editCircle(size, color) {
+    circleUI.style.backgroundColor = color
+    circleUI.style.width = `${size}px`
+    circleUI.style.height = `${size}px`
+  }
+
+  function onDropCircle() {
+    // Push particles here with right parameters
+  }
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  })
   editCircle(paramsUI.size, paramsUI.color)
   initializeParticles()
   animate()
