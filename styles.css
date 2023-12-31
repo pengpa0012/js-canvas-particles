@@ -10,10 +10,12 @@ canvas {
   height: 100%;
 }
 
-.cover-ui {
+.cover-ui,
+.circle-cover {
   transition: 250ms ease-in;
 }
 
-.cover-ui.toggle  {
+.cover-ui.toggle,
+.circle-cover.toggle  {
   transform: translateY(100%);
 }

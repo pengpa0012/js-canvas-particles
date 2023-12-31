@@ -13,7 +13,7 @@
   <div class="fixed bottom-0 w-full flex justify-around gap-5 items-center bg-white border py-6 cover-ui">
     <div class="flex gap-3">
       <p>Size:</p>
-      <input type="range" min="10" max="20" class="size" value="10">
+      <input type="range" min="10" max="50" class="size" value="10">
     </div>
     <div class="flex gap-3">
       <p>Speed:</p>
@@ -21,11 +21,11 @@
     </div>  
     <input type="color" colorpick-eyedropper-active="false" class="color" value="#000000">
     <button class="reset">Reset</button>
-    <div class="p-5 bottom-[75px] left-1/2 -translate-x-1/2 absolute bg-white border rounded">
-      <div class="circle rounded-full cursor-grab" draggable></div>
+    <div class="p-5 bottom-[75px] left-1/2 -translate-x-1/2 absolute bg-white border rounded circle-cover">
+      <div class="circle rounded-full cursor-grab" draggable="true"></div>
     </div>
-    <div class="bottom-[75px] w-[30px] h-[30px] grid place-items-center right-10 absolute bg-gray-500 rounded cursor-pointer dropdown-btn">
-      <span>X</span>
+    <div class="py-1 px-2 bottom-[75px] grid place-items-center right-10 absolute bg-gray-400 rounded cursor-pointer dropdown-btn">
+      Hide
     </div>
   </div>
 </body>
