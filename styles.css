@@ -15,7 +15,10 @@ canvas {
   transition: 250ms ease-in;
 }
 
-.cover-ui.toggle,
-.circle-cover.toggle  {
+.cover-ui.toggle {
   transform: translateY(100%);
+}
+
+.circle-cover.toggle {
+  transform: translate(-50%, 100%);
 }

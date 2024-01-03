@@ -48,6 +48,13 @@ function createCircle(particle, i) {
   ctx.fill()
 }
 
+function editCircle(circleParams) {
+  const {size, color} = circleParams
+  circleUI.style.backgroundColor = color
+  circleUI.style.width = `${parseInt(size) + 15}px`
+  circleUI.style.height = `${parseInt(size) + 15}px`
+}
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   particles.forEach((particle, i) => {
@@ -59,7 +66,6 @@ function animate() {
 window.addEventListener("DOMContentLoaded", () => {
   sizeUI.addEventListener("input", e => {
     paramsUI.size = e.target.value
-    console.log(e.target.value)
     editCircle(paramsUI)
   })
 
@@ -93,13 +99,6 @@ window.addEventListener("DOMContentLoaded", () => {
   resetBtn.addEventListener("click", () => {
     particles = []
   })
-
-  function editCircle(circleParams) {
-    const {size, color} = circleParams
-    circleUI.style.backgroundColor = color
-    circleUI.style.width = `${parseInt(size) + 15}px`
-    circleUI.style.height = `${parseInt(size) + 15}px`
-  }
 
   window.addEventListener('resize', () => {
     canvas.width = window.innerWidth
