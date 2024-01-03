@@ -1,5 +1,6 @@
 const canvas = document.querySelector("#canvas")
 const ctx = canvas.getContext("2d")
+const rect = canvas.getBoundingClientRect();
 const circleUI = document.querySelector(".circle")
 const circleCoverUI = document.querySelector(".circle-cover")
 const speedUI = document.querySelector(".speed")
@@ -84,9 +85,21 @@ window.addEventListener("DOMContentLoaded", () => {
     circleCoverUI.classList.toggle("toggle")
   })
 
-  circleUI.addEventListener("dragend", (e) => {
+  circleUI.addEventListener("dragend", dragCircle)
+  circleUI.addEventListener("touchend", dragCircle)
+
+  function dragCircle(e) {
+    let x, y
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      console.log(e.changedTouches[0])
+      x = e.changedTouches[0].pageX - rect.left,
+      y = e.changedTouches[0].pageY - rect.top
+    } else {
+      x = e.pageX - rect.left
+      y = e.pageY - rect.top
+    }
+
     // Push particles here with right parameters
-    const {x, y} = e
     particles.push({
       x,
       y,
@@ -94,7 +107,7 @@ window.addEventListener("DOMContentLoaded", () => {
       size: paramsUI.size,
       color: paramsUI.color
     });
-  })
+  }
 
   resetBtn.addEventListener("click", () => {
     particles = []
